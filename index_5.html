@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoSafeNexus｜企業の伴走者として、環境・安全・健康を支援</title>
+  <meta name="description" content="EcoSafeNexusは、中小企業のESH（Environment・Safety・Health）マネジメントに寄り添うパートナーです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #003366;
+      --navy-light: #1a5276;
+      --accent: #4a8aba;
+      --gold: #c8a84b;
+      --text: #1a1a2e;
+      --text-mid: #4a4a6a;
+      --text-light: #888;
+      --bg: #ffffff;
+      --bg-soft: #f8f9fc;
+      --border: #e0e4ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--bg); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 44px; height: 44px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo-en { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
+    .logo-jp { font-size: 10px; color: var(--text-mid); letter-spacing: 0.1em; }
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.04em; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy) !important; color: white !important; padding: 10px 20px; border-radius: 4px; }
+    .nav-cta:hover { background: var(--navy-light) !important; color: white !important; }
+
+    /* LAYOUT */
+    section { padding: 100px 48px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .section-label { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; }
+    .section-label::before { content: ''; display: block; width: 36px; height: 1px; background: var(--accent); }
+    .section-label.center { justify-content: center; }
+    .section-title { font-family: 'Noto Serif JP', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 20px; }
+    .section-title.center { text-align: center; }
+    .section-sub { font-size: 15px; color: var(--text-mid); line-height: 1.9; max-width: 600px; margin: 0 auto; text-align: center; }
+
+    /* HERO */
+    #hero { min-height: 100vh; padding-top: 130px; display: flex; align-items: center; background: linear-gradient(140deg, #f8f9fc 0%, #edf2f8 60%, #e8f0f8 100%); position: relative; overflow: hidden; }
+    #hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(0,51,102,0.05) 0%, transparent 70%); border-radius: 50%; }
+    .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; }
+    .hero-tag::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+    .hero-headline { font-family: 'Noto Serif JP', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; color: var(--navy); line-height: 1.6; margin-bottom: 36px; }
+    .hero-body { font-size: 15px; color: var(--text-mid); line-height: 2.1; max-width: 560px; margin-bottom: 52px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: white; padding: 18px 40px; border-radius: 4px; font-size: 16px; font-weight: 500; text-decoration: none; letter-spacing: 0.06em; transition: background 0.25s, transform 0.2s; }
+    .hero-cta:hover { background: var(--navy-light); transform: translateY(-2px); }
+    .hero-cta-note { display: block; font-size: 12px; color: var(--text-light); margin-top: 14px; }
+
+    /* MVV */
+    #mission { background: var(--bg-soft); }
+    .mvv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border-radius: 12px; overflow: hidden; margin-top: 56px; }
+    .mvv-card { background: white; padding: 44px 32px; position: relative; }
+    .mvv-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: #dde2ee; position: absolute; top: 22px; right: 26px; }
+    .mvv-en { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .mvv-jp { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 22px; }
+    .mvv-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.9; }
+
+    /* VALUES */
+    #values { background: var(--bg); }
+    .values-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 56px; }
+    .value-card { border: 1px solid var(--border); border-radius: 10px; padding: 28px 18px; transition: box-shadow 0.25s, transform 0.25s; }
+    .value-card:hover { box-shadow: 0 8px 28px rgba(0,51,102,0.1); transform: translateY(-3px); }
+    .value-num { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: #dde2ee; margin-bottom: 18px; }
+    .value-jp { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .value-en { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+    .value-text { font-size: 12.5px; color: var(--text-mid); line-height: 1.8; }
+
+    /* SERVICES */
+    #services { background: var(--bg-soft); }
+    .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    .plan-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 44px 36px; position: relative; overflow: hidden; }
+    .plan-card.featured { border-color: var(--navy); box-shadow: 0 12px 40px rgba(0,51,102,0.1); }
+    .plan-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--navy); }
+    .plan-badge { display: inline-block; border: 1.5px solid var(--accent); color: var(--accent); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; padding: 4px 11px; border-radius: 100px; text-transform: uppercase; margin-bottom: 14px; }
+    .plan-num { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: #dde2ee; position: absolute; top: 36px; right: 36px; }
+    .plan-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--gold); background: rgba(200,168,75,0.1); padding: 4px 11px; border-radius: 100px; margin-bottom: 20px; }
+    .plan-status::before { content: ''; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+    .plan-title { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+    .plan-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.9; margin-bottom: 28px; }
+    .plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+    .price-num { font-family: 'Noto Serif JP', serif; font-size: 40px; font-weight: 700; color: var(--navy); }
+    .price-unit { font-size: 13px; color: var(--text-mid); }
+    .price-note { font-size: 11px; color: var(--text-light); margin-bottom: 28px; }
+    .plan-features { list-style: none; margin-bottom: 28px; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--text-mid); padding: 8px 0; border-bottom: 1px solid var(--bg-soft); line-height: 1.6; }
+    .plan-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .plan-note { font-size: 12px; color: var(--accent); background: rgba(74,138,186,0.08); padding: 10px 14px; border-radius: 6px; margin-bottom: 28px; line-height: 1.7; }
+    .plan-btn { display: block; text-align: center; padding: 15px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; transition: all 0.2s; letter-spacing: 0.04em; }
+    .plan-btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+    .plan-btn-outline:hover { background: var(--navy); color: white; }
+    .plan-btn-filled { background: var(--navy); color: white; }
+    .plan-btn-filled:hover { background: var(--navy-light); }
+
+    /* NAME */
+    #name { background: var(--bg); }
+    .name-rows { margin-top: 64px; }
+    .name-row { display: flex; align-items: flex-start; gap: 56px; padding: 44px 0; border-bottom: 1px solid var(--border); }
+    .name-row:last-child { border-bottom: none; }
+    .name-word { font-family: 'Noto Serif JP', serif; font-size: 48px; font-weight: 700; color: var(--navy); letter-spacing: 0.06em; min-width: 160px; }
+    .name-detail { padding-top: 4px; }
+    .name-en { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+    .name-jp { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .name-text { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+    /* CTA */
+    #cta { background: var(--navy); padding: 120px 48px; text-align: center; }
+    .cta-label { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 24px; justify-content: center; }
+    .cta-label::before { content: ''; width: 36px; height: 1px; background: rgba(255,255,255,0.25); }
+    #cta h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(24px, 4vw, 40px); font-weight: 700; color: white; margin-bottom: 24px; line-height: 1.55; }
+    #cta p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 2.1; max-width: 520px; margin: 0 auto 52px; }
+    .cta-btn-main { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--navy); padding: 20px 48px; border-radius: 4px; font-size: 16px; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; transition: all 0.25s; }
+    .cta-btn-main:hover { background: #f0f5fb; transform: translateY(-2px); }
+    .cta-note { display: block; font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 18px; }
+
+    /* FOOTER */
+    footer { background: #001a33; color: rgba(255,255,255,0.55); padding: 72px 48px 32px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+    .footer-brand-text { font-size: 13px; line-height: 1.9; margin-top: 16px; max-width: 240px; }
+    .footer-col h4 { font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 11px; }
+    .footer-col ul li a { text-decoration: none; color: rgba(255,255,255,0.55); font-size: 13px; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      header { padding: 0 24px; }
+      section { padding: 72px 24px; }
+      #cta { padding: 80px 24px; }
+      footer { padding: 56px 24px 24px; }
+      .mvv-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .plans-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .name-row { flex-direction: column; gap: 12px; }
+    }
+    @media (max-width: 560px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="#hero" class="logo-wrap">
+    <img src="logo.png" alt="EcoSafeNexus" class="logo-icon">
+    <div class="logo-text">
+      <span class="logo-en">EcoSafeNexus</span>
+      <span class="logo-jp">エコセーフネクサス</span>
+    </div>
+  </a>
+  <nav>
+    <a href="#about">私たちについて</a>
+    <a href="#mission">Mission</a>
+    <a href="#services">サービス</a>
+    <a href="#name">社名の意味</a>
+    <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="nav-cta">無料相談を予約</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">ESH Consulting Partner</div>
+    <h1 class="hero-headline">
+      企業の伴走者として、<br>
+      環境・安全・健康を支え、<br>
+      持続可能な成長を、共に。
+    </h1>
+    <p class="hero-body">
+      EcoSafeNexusは、中小企業のESH（Environment・Safety・Health）マネジメントに寄り添うパートナーです。<br>
+      担当者の日々の困りごとに向き合いながら、自律的に推進できる力を、一歩ずつ育てていきます。
+    </p>
+    <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="hero-cta">
+      30分 無料ESH相談を予約する →
+    </a>
+    <span class="hero-cta-note">※ 費用は一切かかりません。まずはお気軽にどうぞ。</span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">About Us</div>
+    <h2 class="section-title">私たちについて</h2>
+    <p style="font-size:15px;color:var(--text-mid);line-height:2.1;max-width:680px;">
+      環境・安全・健康の調和を通じて、企業と人々の手の届く未来を創る。<br>
+      その実現のために、私たちが大切にしている考え方です。<br><br>
+      ESH担当者が孤立しないように。困ったとき、外に仲間がいると感じてもらえるように。<br>
+      EcoSafeNexusは、そんな想いで動いています。
+    </p>
+  </div>
+</section>
+
+<section id="mission">
+  <div class="container">
+    <div class="section-label center">Our Foundation</div>
+    <h2 class="section-title center">Mission / Vision / Value</h2>
+    <p class="section-sub">私たちの活動の根幹となる、使命・未来像・価値観です。</p>
+    <div class="mvv-grid">
+      <div class="mvv-card">
+        <span class="mvv-num">01</span>
+        <div class="mvv-en">Mission</div>
+        <div class="mvv-jp">使命</div>
+        <p class="mvv-text">中小企業の環境・安全・健康管理を支援し、人材育成を通じて持続可能な成長に寄与する。</p>
+      </div>
+      <div class="mvv-card">
+        <span class="mvv-num">02</span>
+        <div class="mvv-en">Vision</div>
+        <div class="mvv-jp">未来像</div>
+        <p class="mvv-text">すべての企業が自律的にESHのマネジメントを実践し、従業員の安全と健康、地球環境の保全を通じて、人々の幸福につながる未来を創る。</p>
+      </div>
+      <div class="mvv-card">
+        <span class="mvv-num">03</span>
+        <div class="mvv-en">Value</div>
+        <div class="mvv-jp">価値観</div>
+        <p class="mvv-text">伴走・専門性・人材育成・持続可能性・幸福志向。この5つを軸に、企業と人々の未来に寄り添います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values">
+  <div class="container">
+    <div class="section-label center">Our Values</div>
+    <h2 class="section-title center">5つの価値観</h2>
+    <p class="section-sub">私たちが日々の仕事で大切にし、お客様との関係を築くうえでの軸となる考え方です。</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01</div>
+        <div class="value-jp">伴走</div>
+        <div class="value-en">Partnership</div>
+        <p class="value-text">企業の課題に寄り添い、共に解決を目指します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02</div>
+        <div class="value-jp">専門性</div>
+        <div class="value-en">Expertise</div>
+        <p class="value-text">法規制や最新知見に基づく、信頼できる支援を提供します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03</div>
+        <div class="value-jp">人材育成</div>
+        <div class="value-en">Empowerment</div>
+        <p class="value-text">担当者を育て、自律的にESHを推進できる力を残します。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04</div>
+        <div class="value-jp">持続可能性</div>
+        <div class="value-en">Sustainability</div>
+        <p class="value-text">環境・安全・健康の調和を通じて、未来を支えます。</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">05</div>
+        <div class="value-jp">幸福志向</div>
+        <div class="value-en">Well-being</div>
+        <p class="value-text">すべての取り組みが人々の安心と幸せにつながることを重視します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-label center">Services</div>
+    <h2 class="section-title center">サービス</h2>
+    <p class="section-sub">個人のESH担当者の方から、企業としての体制づくりまで。<br>2つのプランで伴走します。</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-badge">For Individuals</div>
+        <div class="plan-num">Plan 01</div>
+        <div class="plan-status">Coming Soon — 現在準備中</div>
+        <h3 class="plan-title">個人向けプラットフォーム</h3>
+        <p class="plan-desc">ESH担当者の日々の業務を支える、オンラインの学習・実務支援プラットフォーム。テンプレートやガイドをご利用いただける形で準備を進めています。</p>
+        <div class="plan-price"><span class="price-num">¥2,000</span></div>
+        <p class="price-note">／ 月額（税込）予定</p>
+        <ul class="plan-features">
+          <li>ESH関連コンテンツ・テンプレートの提供</li>
+          <li>ツール活用ガイドの提供</li>
+          <li>SDS → 化学物質管理台帳 自動生成（将来提供予定）</li>
+        </ul>
+        <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="plan-btn plan-btn-outline">無料相談で詳細を聞く →</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">For Companies</div>
+        <div class="plan-num">Plan 02</div>
+        <div class="plan-status">Coming Soon — 現在準備中</div>
+        <h3 class="plan-title">企業向け顧問</h3>
+        <p class="plan-desc">ESH担当者の困りごとに、オンライン相談で伴走支援。現場の運用や体制づくりのご相談にお応えします。サービスの詳細はご相談の上で決定します。</p>
+        <div class="plan-price"><span class="price-num">¥30,000</span></div>
+        <p class="price-note">／ 月額（税込）予定</p>
+        <ul class="plan-features">
+          <li>隔週1時間のオンラインミーティング</li>
+          <li>ESH担当者の困りごとへの伴走対応</li>
+          <li>体制づくり・人材育成のサポート</li>
+          <li>コンテンツ・テンプレート使い放題</li>
+        </ul>
+        <div class="plan-note">※ 丁寧な伴走をお約束するため、最大10社限定を予定しています。</div>
+        <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="plan-btn plan-btn-filled">無料相談を予約する →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="name">
+  <div class="container">
+    <div class="section-label center">The Name</div>
+    <h2 class="section-title center">社名にこめた想い</h2>
+    <p class="section-sub">「EcoSafeNexus」は、環境・安全・つながりを象徴する<br>3つの言葉から成り立っています。</p>
+    <div class="name-rows">
+      <div class="name-row">
+        <div class="name-word">ECO</div>
+        <div class="name-detail">
+          <div class="name-en">Environment &amp; Compliance Optimization</div>
+          <div class="name-jp">環境と法令遵守の最適化</div>
+          <p class="name-text">環境への配慮と法令遵守を、企業活動の中心に置くことを意味します。</p>
+        </div>
+      </div>
+      <div class="name-row">
+        <div class="name-word">SAFE</div>
+        <div class="name-detail">
+          <div class="name-en">Safety &amp; Assurance For Everyone</div>
+          <div class="name-jp">すべての人のための、安全と安心の確保</div>
+          <p class="name-text">働くすべての人が安心して仕事に向き合える環境をつくることを表しています。</p>
+        </div>
+      </div>
+      <div class="name-row">
+        <div class="name-word">NEXUS</div>
+        <div class="name-detail">
+          <div class="name-en">Networked Excellence for Unified Systems</div>
+          <div class="name-jp">統合された仕組みによる、卓越した連携</div>
+          <p class="name-text">バラバラになりがちなESH活動を、つながりのある仕組みとして統合することを目指します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-label">Free Consultation</div>
+  <h2>まずは、お気軽にご相談ください。</h2>
+  <p>
+    自社のESH体制に課題を感じている、担当者が孤立している、何から始めればいいか分からない。<br>
+    どんな状況でも、はじめの一歩を一緒に考えます。
+  </p>
+  <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="cta-btn-main">
+    30分 無料ESH相談を予約する →
+  </a>
+  <span class="cta-note">※ 費用は一切かかりません。Google Meetにてオンラインで実施します。</span>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="#hero" class="logo-wrap">
+          <img src="logo.png" alt="EcoSafeNexus" style="width:36px;height:36px;object-fit:contain;filter:brightness(0) invert(1) opacity(0.7);">
+          <div class="logo-text" style="margin-left:10px;">
+            <span style="font-family:'Noto Serif JP',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8);">EcoSafeNexus</span>
+            <span style="font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;">エコセーフネクサス</span>
+          </div>
+        </a>
+        <p class="footer-brand-text">企業の伴走者として、<br>環境・安全・健康を支援する。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">個人向けプラットフォーム</a></li>
+          <li><a href="#services">企業向け顧問</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#mission">Mission / Vision / Value</a></li>
+          <li><a href="#values">5つの価値観</a></li>
+          <li><a href="#name">社名の意味</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank">無料相談を予約</a></li>
+          <li><a href="mailto:info@ecosafenexus.jp">info@ecosafenexus.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 EcoSafeNexus. All rights reserved.</p>
+      <p>ESH Consulting Partner</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
