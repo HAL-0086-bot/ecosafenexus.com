@@ -147,8 +147,10 @@
 
     /* SERVICES */
     #services { background: var(--bg-soft); }
-    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; align-items: start; }
-    .plan-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 40px 30px; position: relative; overflow: hidden; }
+    .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    .plan-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 40px 30px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    .plan-card .plan-btn { margin-top: auto; }
+    .plan-features { flex: 1; }
     .plan-features li a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(74,138,186,0.35); }
     .plan-features li a:hover { border-bottom-color: var(--accent); }
     .plan-card.featured { border-color: var(--navy); box-shadow: 0 12px 40px rgba(0,51,102,0.1); }
@@ -376,9 +378,9 @@
         <div class="plan-price"><span class="price-num">¥0</span></div>
         <p class="price-note">登録不要・いつでも利用可能</p>
         <ul class="plan-features">
-          <li>ISO方針ジェネレーター（環境・安全衛生・品質・統合の方針文案を3分で生成）</li>
-          <li>30分無料ESH相談（Google Meet・オンライン）</li>
-          <li><a href="https://www.youtube.com/@EcoSafeNexus" target="_blank" rel="noopener">YouTube</a>・<a href="https://note.com/lucky_moraea6560" target="_blank" rel="noopener">Note</a>で実務解説を無料公開</li>
+          <li>ISO方針ジェネレーター（3分で方針文案）</li>
+          <li>30分無料ESH相談（オンライン）</li>
+          <li><a href="https://www.youtube.com/@EcoSafeNexus" target="_blank" rel="noopener">YouTube</a>・<a href="https://note.com/lucky_moraea6560" target="_blank" rel="noopener">Note</a>で実務解説を公開</li>
         </ul>
         <a href="https://ecosafenexus-policy-tool.onrender.com" target="_blank" rel="noopener" class="plan-btn plan-btn-outline">無料で方針を作る →</a>
       </div>
@@ -387,18 +389,16 @@
         <div class="plan-num">Plan 01</div>
         <div class="plan-status">いちばん選ばれています</div>
         <h3 class="plan-title">EcoSafeNexus IMSツール</h3>
-        <p class="plan-desc">ISOマネジメントシステムの実務——リスク評価から集約・目標設定・運用まで——をAIで一気通貫。製造業ESH担当者の作業時間を大幅に削減します。</p>
+        <p class="plan-desc">ISOの実務——リスク評価から目標設定・運用まで——をAIで一気通貫。担当者の作業時間を大幅に削減します。</p>
         <div class="plan-price"><span class="price-num">¥5,500</span></div>
         <p class="price-note">／ 月額（税込）・年間プランあり（¥52,800/年）</p>
         <ul class="plan-features">
-          <li>ISO14001/45001 課題分析・MS文書のAI生成</li>
-          <li>リスクアセスメント一式（作業RA・環境側面・化学物質・人間工学 REBA/NIOSH）</li>
-          <li>SDSをAI読み取り → 化学物質台帳へ自動登録</li>
-          <li>リスク統合レジスター＆目標・実施計画の自動生成</li>
-          <li>ESH法令チャットボット（54法令）・順守評価</li>
+          <li>ISO14001/45001 文書・課題分析のAI生成</li>
+          <li>リスクアセスメント一式（作業・環境側面・化学物質・人間工学）</li>
+          <li>法令チャットボット（54法令）・順守評価</li>
           <li>会員限定記事・即日利用開始</li>
         </ul>
-        <a href="https://hal-0086-bot.github.io/ecosafenexus-lp/" target="_blank" class="plan-btn plan-btn-filled">詳細・申し込みはこちら →</a>
+        <a href="https://hal-0086-bot.github.io/ecosafenexus-lp/#features" target="_blank" class="plan-btn plan-btn-filled">全機能の詳細・申し込み →</a>
       </div>
       <div class="plan-card">
         <div class="plan-badge">For Companies</div>
@@ -408,11 +408,9 @@
         <div class="plan-price"><span class="price-num">¥55,000</span></div>
         <p class="price-note">／ 月額（税込）</p>
         <ul class="plan-features">
-          <li>全ツール（使い放題）</li>
-          <li>メールサポート付き</li>
-          <li>Webミーティング対応</li>
+          <li>全ツール使い放題・複数アカウント発行</li>
+          <li>メール・Webミーティングサポート</li>
           <li>ESH人材育成コンサル</li>
-          <li>複数アカウント発行</li>
         </ul>
         <a href="mailto:info@ecosafenexus.com?subject=エンタープライズプランのお問い合わせ" class="plan-btn plan-btn-filled">お問い合わせ →</a>
       </div>
