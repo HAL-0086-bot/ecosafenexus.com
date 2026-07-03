@@ -4,8 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EcoSafeNexus｜企業の伴走者として、環境・安全・健康を支援</title>
-  <meta name="description" content="EcoSafeNexusは、企業のESH（Environment・Safety・Health）マネジメントに寄り添うパートナーです。">
+  <meta name="description" content="EcoSafeNexusは、企業のESH（Environment・Safety・Health）マネジメントに寄り添うパートナーです。ISO14001/45001対応のIMSツール・無料の方針ジェネレーター・30分無料相談を提供しています。">
+  <meta property="og:title" content="EcoSafeNexus｜企業の伴走者として、環境・安全・健康を支援">
+  <meta property="og:description" content="ISO14001/45001対応のIMSツール・無料の方針ジェネレーター・30分無料相談。製造業ESH担当者の実務をAIで支援します。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ecosafenexus.com/">
+  <meta property="og:image" content="https://ecosafenexus.com/og.png">
+  <meta property="og:site_name" content="EcoSafeNexus">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EcoSafeNexus｜企業の伴走者として、環境・安全・健康を支援">
+  <meta name="twitter:description" content="ISO14001/45001対応のIMSツール・無料の方針ジェネレーター・30分無料相談。製造業ESH担当者の実務をAIで支援します。">
+  <meta name="twitter:image" content="https://ecosafenexus.com/og.png">
   <link rel="icon" type="image/png" href="logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "EcoSafeNexus",
+    "alternateName": "エコセーフネクサス",
+    "url": "https://ecosafenexus.com/",
+    "logo": "https://ecosafenexus.com/logo.png",
+    "description": "企業のESH（環境・安全・健康）マネジメントを支援。ISO14001/45001対応のIMSツールとコンサルティングを提供。",
+    "email": "info@ecosafenexus.com",
+    "sameAs": [
+      "https://www.youtube.com/@EcoSafeNexus",
+      "https://note.com/lucky_moraea6560"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -33,11 +60,16 @@
     .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
     .logo-en { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
     .logo-jp { font-size: 10px; color: var(--text-mid); letter-spacing: 0.1em; }
-    nav { display: flex; gap: 32px; align-items: center; }
+    nav { display: flex; gap: 26px; align-items: center; }
     nav a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.04em; transition: color 0.2s; white-space: nowrap; }
     nav a:hover { color: var(--navy); }
     .nav-cta { background: var(--navy) !important; color: white !important; padding: 10px 20px; border-radius: 4px; }
     .nav-cta:hover { background: var(--navy-light) !important; color: white !important; }
+    #menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 10px; margin: -10px; }
+    #menu-btn span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; border-radius: 2px; transition: transform 0.25s, opacity 0.2s; }
+    #menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #menu-btn.open span:nth-child(2) { opacity: 0; }
+    #menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* LAYOUT */
     section { padding: 100px 48px; }
@@ -142,7 +174,11 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav { display: none; }
+      #menu-btn { display: block; }
+      nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(8px); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 20px; border-bottom: 1px solid var(--border); box-shadow: 0 16px 32px rgba(0,51,102,0.1); }
+      nav.open { display: flex; }
+      nav a { padding: 14px 4px; font-size: 15px; border-bottom: 1px solid var(--bg-soft); }
+      nav a.nav-cta { margin-top: 12px; text-align: center; border-bottom: none; }
       header { padding: 0 24px; }
       section { padding: 72px 24px; }
       #cta { padding: 80px 24px; }
@@ -169,16 +205,17 @@
       <span class="logo-jp">エコセーフネクサス</span>
     </div>
   </a>
-  <nav>
+  <nav id="site-nav">
     <a href="#about">私たちについて</a>
-    <a href="#mission">Mission</a>
     <a href="#services">サービス</a>
+    <a href="#faq">FAQ</a>
     <a href="#name">社名の意味</a>
     <a href="https://hal-0086-bot.github.io/ecosafenexus-lp/" target="_blank">IMSツール</a>
     <a href="https://ecosafenexus-policy-tool.onrender.com" target="_blank" rel="noopener">無料で方針を作る</a>
     <a href="https://ecosafenexus-ims.onrender.com" target="_blank" rel="noopener">会員ログイン</a>
     <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="nav-cta">無料相談を予約</a>
   </nav>
+  <button id="menu-btn" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 
 <section id="hero">
@@ -193,6 +230,8 @@
       EcoSafeNexusは、企業のESH（Environment・Safety・Health）マネジメントに寄り添うパートナーです。<br>
       担当者の日々の困りごとに向き合いながら、自律的に推進できる力を、一歩ずつ育てていきます。
     </p>
+    <a href="https://ecosafenexus-policy-tool.onrender.com" target="_blank" rel="noopener" class="hero-cta">無料でISO方針を作ってみる →</a>
+    <span class="hero-cta-note">※ 登録不要・3分で完成。ISO14001／45001／9001に対応</span>
   </div>
 </section>
 
@@ -410,6 +449,26 @@
   </div>
 </footer>
 
+
+<script>
+  (function () {
+    var btn = document.getElementById('menu-btn');
+    var nav = document.getElementById('site-nav');
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
