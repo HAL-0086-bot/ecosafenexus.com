@@ -33,6 +33,39 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "解約はいつでもできますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい、いつでも可能です。ログイン後のアカウントページからカスタマーポータルに進み、ご自身で解約手続きができます。解約後もご契約期間の終了日までは全機能をご利用いただけます（日割り返金はありません）。" }
+      },
+      {
+        "@type": "Question",
+        "name": "支払い方法は何がありますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "クレジットカード決済（Stripe）に対応しています。請求書・領収書はカスタマーポータルからいつでも確認・ダウンロードできます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "申し込んだらすぐに使えますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "はい。決済完了後すぐに、ご登録のメールアドレス宛にアクセストークンと利用開始手順が届きます。届いたその日からすべてのツールをご利用いただけます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "無料で試すことはできますか？",
+        "acceptedAnswer": { "@type": "Answer", "text": "ISO方針ジェネレーターを無料・登録不要で公開しています。環境・安全衛生・品質・統合の方針文案を約3分で生成できます。あわせて30分の無料ESH相談もご利用いただけます。" }
+      },
+      {
+        "@type": "Question",
+        "name": "アクセストークンを忘れてしまったら？",
+        "acceptedAnswer": { "@type": "Answer", "text": "ログイン画面の「アクセストークンを忘れた方」から、ご登録のメールアドレスを入力するだけで新しいトークンを再発行できます。" }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -150,6 +183,17 @@
     .name-en { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
     .name-jp { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
     .name-text { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+    /* FAQ */
+    #faq { background: var(--bg-soft); }
+    .faq-list { max-width: 760px; margin: 56px auto 0; }
+    .faq-item { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+    .faq-item summary { cursor: pointer; padding: 20px 24px; font-size: 15px; font-weight: 500; color: var(--navy); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 300; color: var(--accent); flex-shrink: 0; transition: transform 0.2s; line-height: 1; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-a { padding: 0 24px 20px; font-size: 14px; color: var(--text-mid); line-height: 1.9; }
 
     /* CTA */
     #cta { background: var(--navy); padding: 120px 48px; text-align: center; }
@@ -406,6 +450,36 @@
           <p class="name-text">バラバラになりがちなESH活動を、つながりのある仕組みとして統合することを目指します。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="section-label center">FAQ</div>
+    <h2 class="section-title center">よくあるご質問</h2>
+    <p class="section-sub">IMSツールのお申し込み・ご利用について、よくいただくご質問です。</p>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>解約はいつでもできますか？</summary>
+        <p class="faq-a">はい、いつでも可能です。ログイン後の「アカウント」ページからカスタマーポータルに進み、ご自身で解約手続きができます。解約後もご契約期間の終了日までは全機能をご利用いただけます（日割り返金はありません）。</p>
+      </details>
+      <details class="faq-item">
+        <summary>支払い方法は何がありますか？</summary>
+        <p class="faq-a">クレジットカード決済（Stripe）に対応しています。請求書・領収書はログイン後の「アカウント」ページのカスタマーポータルからいつでも確認・ダウンロードできます。</p>
+      </details>
+      <details class="faq-item">
+        <summary>申し込んだらすぐに使えますか？</summary>
+        <p class="faq-a">はい。決済完了後すぐに、ご登録のメールアドレス宛にアクセストークン（ログイン用の鍵）と利用開始手順が届きます。届いたその日からすべてのツールをご利用いただけます。</p>
+      </details>
+      <details class="faq-item">
+        <summary>無料で試すことはできますか？</summary>
+        <p class="faq-a">ISO方針ジェネレーターを無料・登録不要で公開しています。環境・安全衛生・品質・統合の方針文案を約3分で生成でき、AIツールの使用感を体験いただけます。あわせて30分の無料ESH相談もご利用ください。</p>
+      </details>
+      <details class="faq-item">
+        <summary>アクセストークンを忘れてしまったら？</summary>
+        <p class="faq-a">ログイン画面の「アクセストークンを忘れた方」から、ご登録のメールアドレスを入力するだけで新しいトークンを再発行できます（登録メール宛に届きます）。お困りの際は info@ecosafenexus.com へもどうぞ。</p>
+      </details>
     </div>
   </div>
 </section>
