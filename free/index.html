@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>無料で使えるESHツール・コンテンツ一覧 | EcoSafeNexus</title>
+  <meta name="description" content="ISO方針ジェネレーター・労働安全衛生法の義務一覧162件・30分無料相談・実務解説のYouTube/Note。EcoSafeNexusの無料ツールとコンテンツをまとめたページです。登録不要で今日から使えます。">
+  <link rel="canonical" href="https://ecosafenexus.com/free/">
+  <meta property="og:title" content="無料で使えるESHツール・コンテンツ一覧 | EcoSafeNexus">
+  <meta property="og:description" content="ISO方針ジェネレーター・安衛法の義務一覧・30分無料相談・実務解説動画。登録不要で今日から使える無料ツールを集めました。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ecosafenexus.com/free/">
+  <meta property="og:image" content="https://ecosafenexus.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #003366;
+      --navy-light: #1a5276;
+      --accent: #4a8aba;
+      --text: #1a1a2e;
+      --text-mid: #4a4a6a;
+      --text-light: #888;
+      --bg: #ffffff;
+      --bg-soft: #f8f9fc;
+      --border: #e0e4ed;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--bg); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+    /* HEADER（本体と同一トーン） */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 48px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 44px; height: 44px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo-en { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--navy); letter-spacing: 0.02em; }
+    .logo-jp { font-size: 10px; color: var(--text-mid); letter-spacing: 0.1em; }
+    nav { display: flex; gap: 26px; align-items: center; }
+    nav a { text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text-mid); letter-spacing: 0.04em; transition: color 0.2s; white-space: nowrap; }
+    nav a:hover { color: var(--navy); }
+    .nav-cta { background: var(--navy) !important; color: white !important; padding: 10px 20px; border-radius: 4px; }
+    .nav-cta:hover { background: var(--navy-light) !important; color: white !important; }
+    #menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 10px; margin: -10px; }
+    #menu-btn span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; border-radius: 2px; }
+
+    /* HERO */
+    #hero { padding: 150px 48px 70px; background: linear-gradient(140deg, #f8f9fc 0%, #edf2f8 60%, #e8f0f8 100%); }
+    .hero-inner { max-width: 1080px; margin: 0 auto; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; }
+    .hero-tag::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+    h1 { font-family: 'Noto Serif JP', serif; font-size: clamp(28px, 4.5vw, 46px); font-weight: 700; color: var(--navy); line-height: 1.5; margin-bottom: 22px; }
+    .hero-body { font-size: 15px; color: var(--text-mid); line-height: 2.0; max-width: 640px; }
+
+    /* CARDS */
+    section.tools { padding: 80px 48px; background: var(--bg); }
+    .container { max-width: 1080px; margin: 0 auto; }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .tool-card { border: 1px solid var(--border); border-radius: 12px; padding: 32px 28px; display: flex; flex-direction: column; transition: box-shadow 0.25s, transform 0.25s; background: white; }
+    .tool-card:hover { box-shadow: 0 8px 28px rgba(0,51,102,0.1); transform: translateY(-3px); }
+    .tool-badge { display: inline-block; align-self: flex-start; border: 1.5px solid var(--accent); color: var(--accent); font-size: 9px; font-weight: 700; letter-spacing: 0.12em; padding: 3px 10px; border-radius: 100px; text-transform: uppercase; margin-bottom: 14px; }
+    .tool-title { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.5; }
+    .tool-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.9; margin-bottom: 22px; flex: 1; }
+    .tool-btn { display: block; text-align: center; padding: 13px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: 0.04em; border: 1.5px solid var(--navy); color: var(--navy); transition: all 0.2s; }
+    .tool-btn:hover { background: var(--navy); color: white; }
+    .tool-btn.filled { background: var(--navy); color: white; }
+    .tool-btn.filled:hover { background: var(--navy-light); }
+    .tool-card.soon { background: var(--bg-soft); border-style: dashed; }
+    .tool-card.soon .tool-btn { border-color: var(--border); color: var(--text-light); pointer-events: none; }
+
+    /* IMS誘導 */
+    #next { background: var(--navy); padding: 90px 48px; text-align: center; }
+    #next .label { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); text-transform: uppercase; margin-bottom: 22px; }
+    #next h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 3.5vw, 34px); font-weight: 700; color: white; margin-bottom: 18px; line-height: 1.6; }
+    #next p { font-size: 14.5px; color: rgba(255,255,255,0.7); line-height: 2.0; max-width: 560px; margin: 0 auto 40px; }
+    .next-btn { display: inline-flex; align-items: center; gap: 10px; background: white; color: var(--navy); padding: 17px 42px; border-radius: 4px; font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.06em; transition: all 0.25s; }
+    .next-btn:hover { background: #f0f5fb; transform: translateY(-2px); }
+    .next-note { display: block; font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 16px; }
+
+    /* FOOTER（簡易版） */
+    footer { background: #001a33; color: rgba(255,255,255,0.55); padding: 44px 48px; text-align: center; font-size: 12px; }
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 10px; }
+    footer a:hover { color: white; }
+    .footer-links { margin-bottom: 16px; }
+
+    @media (max-width: 900px) {
+      header { padding: 0 24px; }
+      #menu-btn { display: block; }
+      nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 20px; border-bottom: 1px solid var(--border); box-shadow: 0 16px 32px rgba(0,51,102,0.1); }
+      nav.open { display: flex; }
+      nav a { padding: 14px 4px; font-size: 15px; border-bottom: 1px solid var(--bg-soft); }
+      nav a.nav-cta { margin-top: 12px; text-align: center; border-bottom: none; }
+      #hero { padding: 120px 24px 56px; }
+      section.tools { padding: 56px 24px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      #next { padding: 64px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo-wrap">
+    <img src="../logo.png" alt="EcoSafeNexus" class="logo-icon">
+    <div class="logo-text">
+      <span class="logo-en">EcoSafeNexus</span>
+      <span class="logo-jp">エコセーフネクサス</span>
+    </div>
+  </a>
+  <nav id="site-nav">
+    <a href="../index.html">ホーム</a>
+    <a href="../index.html#services">サービス</a>
+    <a href="../index.html#faq">FAQ</a>
+    <a href="https://hal-0086-bot.github.io/ecosafenexus-lp/" target="_blank" rel="noopener">IMSツール</a>
+    <a href="https://ecosafenexus-ims.onrender.com" target="_blank" rel="noopener">会員ログイン</a>
+    <a href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" class="nav-cta">無料相談を予約</a>
+  </nav>
+  <button id="menu-btn" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Free Tools &amp; Contents</div>
+    <h1>無料で、今日から使える。</h1>
+    <p class="hero-body">
+      EcoSafeNexusの無料ツールとコンテンツを集めました。登録不要のものばかりです。<br>
+      まずは使ってみて、現場で役に立つかどうかを確かめてください。
+    </p>
+  </div>
+</section>
+
+<section class="tools">
+  <div class="container">
+    <div class="cards-grid">
+
+      <div class="tool-card">
+        <span class="tool-badge">登録不要・3分</span>
+        <h3 class="tool-title">ISO方針ジェネレーター</h3>
+        <p class="tool-desc">業種と重点テーマを選ぶと、環境・安全衛生・品質・統合の方針文案を3パターン生成。ISO14001/45001/9001の5.2要求事項に対応しています。</p>
+        <a class="tool-btn filled" href="https://ecosafenexus-policy-tool.onrender.com" target="_blank" rel="noopener">無料で方針を作る →</a>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-badge">登録不要・条文別</span>
+        <h3 class="tool-title">安衛法 義務一覧（162件）</h3>
+        <p class="tool-desc">労働安全衛生法で事業者に課される義務162件を条単位で整理。届出・選任・教育・健康診断・記録保存など、実務チェックにそのまま使えます。</p>
+        <a class="tool-btn filled" href="../gimu-anzeneiseihou.html">義務一覧を見る →</a>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-badge">オンライン・30分</span>
+        <h3 class="tool-title">無料ESH相談</h3>
+        <p class="tool-desc">体制づくり・法令対応・ISO運用の困りごとを、30分のオンライン相談で。費用は一切かかりません。はじめの一歩を一緒に考えます。</p>
+        <a class="tool-btn" href="https://calendar.app.google/4qTCeajfMaccn5tK7" target="_blank" rel="noopener">相談を予約する →</a>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-badge">毎週更新</span>
+        <h3 class="tool-title">実務解説 YouTube</h3>
+        <p class="tool-desc">是正処置・騒音対策・化学物質管理・熱中症対策など、製造業ESHの実務テーマを20本以上公開中。現場担当者の目線でやさしく解説します。</p>
+        <a class="tool-btn" href="https://www.youtube.com/@EcoSafeNexus" target="_blank" rel="noopener">チャンネルを見る →</a>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-badge">専門記事</span>
+        <h3 class="tool-title">Note 専門解説</h3>
+        <p class="tool-desc">条文の解釈・ISO規格との連動・監査で指摘されやすいポイントまで踏み込んだ、管理職・ISO事務局向けの読み物です。</p>
+        <a class="tool-btn" href="https://note.com/lucky_moraea6560" target="_blank" rel="noopener">記事を読む →</a>
+      </div>
+
+      <div class="tool-card soon">
+        <span class="tool-badge">近日公開</span>
+        <h3 class="tool-title">ESH法令対応セルフチェック</h3>
+        <p class="tool-desc">10問・3分で職場の法令対応の抜けを診断。化学物質RA・熱中症対策など旬の論点を含めて準備中です。</p>
+        <a class="tool-btn">準備中</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <div class="label">Next Step</div>
+  <h2>管理を仕組み化するなら、IMSツール。</h2>
+  <p>
+    リスクアセスメントから統合レジスター・目標設定・法令チャットボットまで。<br>
+    無料ツールの先にある「日々の管理」は、月額5,500円のIMSツールが引き受けます。
+  </p>
+  <a class="next-btn" href="https://hal-0086-bot.github.io/ecosafenexus-lp/#features" target="_blank">IMSツールの機能を見る →</a>
+  <span class="next-note">※ いつでも解約できます。まずは機能一覧からどうぞ。</span>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="../index.html">ホーム</a>
+    <a href="../index.html#services">サービス</a>
+    <a href="../tokushoho.html">特定商取引法に基づく表記</a>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </div>
+  © 2026 EcoSafeNexus. All rights reserved.
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('menu-btn');
+    var nav = document.getElementById('site-nav');
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { nav.classList.remove('open'); });
+    });
+  })();
+</script>
+
+</body>
+</html>
