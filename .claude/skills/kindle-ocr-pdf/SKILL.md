@@ -49,7 +49,7 @@ Kindle本文には直接アクセスできないため、**利用者のPC上でK
 操作できない）。
 
 - macOS: `scripts/capture_kindle_mac.sh <出力フォルダ> <ページ数> [待ち秒]`
-- Windows: `scripts/capture_kindle_windows.ps1 -Out <フォルダ> -Pages <数> -Delay <秒>`
+- Windows: `scripts/capture_kindle_windows.ps1 -Out <フォルダ>`（本の終端で自動停止。ページ数不要）
 
 いずれも「1ページ表示・フォントは大きめ・高解像度のまま」が精度のコツ
 （詳細は `references/SETUP.md`）。キャプチャ後、画像フォルダをこの環境に
