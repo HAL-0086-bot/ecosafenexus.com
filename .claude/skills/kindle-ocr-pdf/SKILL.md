@@ -96,6 +96,16 @@ PowerShellで `powershell -ExecutionPolicy Bypass -File "$HOME\Desktop\capture_k
    ```
 3. 生成された `book.pdf` を確認（ページ数・ファイルサイズ・数ページの検索テスト）。
 
+**⚠️ ページサイズは必ず統一すること**
+ページごとに画像サイズが違うと（内容に合わせた自動トリミングをした場合など）、
+PDFビューアがページ単位でズーム率を変えてしまい、表示がガタガタになる。
+トリミング後は**全ページ共通の白キャンバス（最大ページが収まるサイズ）に中央配置**
+してからOCRにかける：
+```python
+canvas = Image.new("RGB", (CW, CH), "white")
+canvas.paste(im, ((CW - im.width)//2, (CH - im.height)//2))
+```
+
 ### 方式B：Claudeビジョンで読む（高精度・縦書き/難読向け）
 
 `apt-get` が使えないクラウド環境や、tesseractで崩れる縦書き・ルビ・図表混在の
