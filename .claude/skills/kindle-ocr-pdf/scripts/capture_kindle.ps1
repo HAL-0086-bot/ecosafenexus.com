@@ -29,10 +29,17 @@ param(
     [int]$StopAfterSame = 3,
     [ValidateSet("click","key")][string]$Mode = "click",
     [string]$Key = "{RIGHT}",     # -Mode key のときの次ページキー（左送りは "{LEFT}"）
-    [double]$ClickX = 0.94,       # クリック位置（画面幅に対する割合）。右側=次ページ
+    [double]$ClickX = 0.94,       # クリック位置（画面幅に対する割合）。右側=次ページ（横書き/左綴じ）
     [double]$ClickY = 0.5,
+    [switch]$Rtl,                 # 縦書き・右綴じの日本語書籍用。次ページが左側にある本
     [int]$Monitor = 0             # 0=最前面ウィンドウの画面を自動選択 / 1,2,..=画面番号を明示
 )
+
+# 縦書き・右綴じ（日本語書籍に多い）は「次のページ」が左側 → 左をクリック／←キー
+if ($Rtl) {
+    $ClickX = 0.06
+    $Key = "{LEFT}"
+}
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
@@ -69,7 +76,8 @@ if ($existing.Count -gt 0) {
 }
 
 Write-Host ""
-Write-Host "=== 電子書籍 自動キャプチャ（めくり方式: $Mode）==="
+$dir = if ($Rtl) { "左側クリック=次ページ（縦書き・右綴じ）" } else { "右側クリック=次ページ（横書き・左綴じ）" }
+Write-Host "=== 電子書籍 自動キャプチャ（めくり方式: $Mode / $dir）==="
 Write-Host "保存先: $Out"
 Write-Host ""
 Write-Host "これから7秒後に開始します。今すぐ:"
@@ -153,8 +161,9 @@ Write-Host "完了しました。$Out に $saved 枚を保存しました。"
 Write-Host ""
 if ($saved -le 2) {
     Write-Host "【注意】保存が $saved 枚しかありません。ページがめくれていない可能性があります。"
-    Write-Host "  対処: 本の画面を最前面にしてから、めくり方式を切り替えて再実行してください。"
-    Write-Host "  例(→キーでめくる): powershell -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Mode key"
+    Write-Host "  対処: 本の画面を最前面にしてから、めくり方向を切り替えて再実行してください。"
+    Write-Host "  縦書き・右綴じ本(次ページが左): powershell -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Rtl"
+    Write-Host "  →キーでめくる:               powershell -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Mode key"
     Write-Host ""
 }
 Write-Host "次にやること:"
