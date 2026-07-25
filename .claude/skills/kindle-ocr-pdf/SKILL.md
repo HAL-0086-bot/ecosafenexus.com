@@ -46,14 +46,27 @@ Kindle本文には直接アクセスできないため、**利用者のPC上でK
 ### これからキャプチャする場合
 `scripts/` のヘルパーで、ページ送りしながら自動スクショできる。ユーザーの
 **ローカルPCで実行**してもらう（クラウド実行環境からはユーザーのKindleを
-操作できない）。
+操作できない）。**Kindleアプリでも、ブラウザのKindleクラウドリーダー
+（read.amazon.co.jp）でも、画面に本が表示されていれば撮れる。**
 
+**★ 最小手間ルート（推奨）— Windows・ダブルクリックで全自動**
+1. ユーザーに次の2ファイルを渡す（`SendUserFile`）。同じフォルダ（例：デスクトップ）に保存してもらう:
+   - `scripts/capture_kindle.ps1`（UTF-8 BOM付き。既定で「ピクチャ\kindle_pages」に保存、終端で自動停止）
+   - `scripts/START_capture.cmd`（ダブルクリック起動用ランチャー）
+2. ユーザー操作は「本を全画面・先頭ページで開く → `START_capture.cmd` をダブルクリック →
+   5秒カウント中に本の画面をクリックして最前面 → 放置」だけ。
+3. 撮り終わると保存先フォルダが自動で開くので、ZIPにして**このチャットにアップロード**してもらう。
+4. **OCR→PDFはこのスキル側（クラウド環境）で仕上げる**（tesseract日本語OCRは検証済み）。
+   → ユーザーはClaude Codeもtesseractも入れる必要なし。
+
+**その他のヘルパー**
 - macOS: `scripts/capture_kindle_mac.sh <出力フォルダ> <ページ数> [待ち秒]`
-- Windows: `scripts/capture_kindle_windows.ps1 -Out <フォルダ>`（本の終端で自動停止。ページ数不要）
+- Windows(引数指定版): `scripts/capture_kindle_windows.ps1 -Out <フォルダ>`
 
-いずれも「1ページ表示・フォントは大きめ・高解像度のまま」が精度のコツ
-（詳細は `references/SETUP.md`）。キャプチャ後、画像フォルダをこの環境に
-アップロード／同期してもらう。
+いずれも「1ページ表示・全画面・フォント大きめ・高解像度のまま」が精度のコツ
+（詳細は `references/SETUP.md`）。ダブルクリックがSmartScreen等で止まる場合は、
+PowerShellで `powershell -ExecutionPolicy Bypass -File "$HOME\Desktop\capture_kindle.ps1"`
+を実行してもらう。
 
 ---
 
@@ -126,6 +139,8 @@ Kindle本文には直接アクセスできないため、**利用者のPC上でK
 ## このスキルのファイル
 
 - `scripts/ocr_to_pdf.py` — 画像フォルダ→検索可能PDF（方式Aの中核）
+- `scripts/capture_kindle.ps1` — Windows用 自動キャプチャ（最小手間ルート・BOM付き）
+- `scripts/START_capture.cmd` — 上記をダブルクリック起動するランチャー
 - `scripts/capture_kindle_mac.sh` — macOS用 自動キャプチャ
-- `scripts/capture_kindle_windows.ps1` — Windows用 自動キャプチャ
+- `scripts/capture_kindle_windows.ps1` — Windows用 自動キャプチャ（引数指定版）
 - `references/SETUP.md` — OCRツール導入と精度のコツ
