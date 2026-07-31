@@ -98,19 +98,19 @@ Write-Host ("撮影範囲: X=$($bounds.X) Y=$($bounds.Y) W=$($bounds.Width) H=$(
 Write-Host ""
 
 # --- 縮小グレースケール署名（32x32）で「ほぼ同じ画面」を判定 ---
-$SIG = 32
+$SigSize = 32
 function Get-Signature {
     param($srcBmp)
     $small = $null; $g = $null
     try {
-        $small = New-Object System.Drawing.Bitmap $SIG, $SIG
+        $small = New-Object System.Drawing.Bitmap $SigSize, $SigSize
         $g = [System.Drawing.Graphics]::FromImage($small)
         $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBilinear
-        $g.DrawImage($srcBmp, 0, 0, $SIG, $SIG)
-        $sig = New-Object 'byte[]' ($SIG * $SIG)
+        $g.DrawImage($srcBmp, 0, 0, $SigSize, $SigSize)
+        $sig = New-Object 'byte[]' ($SigSize * $SigSize)
         $k = 0
-        for ($y = 0; $y -lt $SIG; $y++) {
-            for ($x = 0; $x -lt $SIG; $x++) {
+        for ($y = 0; $y -lt $SigSize; $y++) {
+            for ($x = 0; $x -lt $SigSize; $x++) {
                 $p = $small.GetPixel($x, $y)
                 $sig[$k] = [byte](($p.R * 0.3) + ($p.G * 0.59) + ($p.B * 0.11)); $k++
             }
