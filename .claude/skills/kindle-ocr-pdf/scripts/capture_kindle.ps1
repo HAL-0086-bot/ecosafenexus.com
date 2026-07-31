@@ -101,25 +101,32 @@ Write-Host ""
 $SIG = 32
 function Get-Signature {
     param($srcBmp)
-    $small = New-Object System.Drawing.Bitmap $SIG, $SIG
-    $g = [System.Drawing.Graphics]::FromImage($small)
-    $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBilinear
-    $g.DrawImage($srcBmp, 0, 0, $SIG, $SIG)
-    $g.Dispose()
-    $sig = New-Object 'byte[]' ($SIG * $SIG)
-    $k = 0
-    for ($y = 0; $y -lt $SIG; $y++) {
-        for ($x = 0; $x -lt $SIG; $x++) {
-            $p = $small.GetPixel($x, $y)
-            $sig[$k] = [byte](($p.R * 0.3) + ($p.G * 0.59) + ($p.B * 0.11)); $k++
+    $small = $null; $g = $null
+    try {
+        $small = New-Object System.Drawing.Bitmap $SIG, $SIG
+        $g = [System.Drawing.Graphics]::FromImage($small)
+        $g.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBilinear
+        $g.DrawImage($srcBmp, 0, 0, $SIG, $SIG)
+        $sig = New-Object 'byte[]' ($SIG * $SIG)
+        $k = 0
+        for ($y = 0; $y -lt $SIG; $y++) {
+            for ($x = 0; $x -lt $SIG; $x++) {
+                $p = $small.GetPixel($x, $y)
+                $sig[$k] = [byte](($p.R * 0.3) + ($p.G * 0.59) + ($p.B * 0.11)); $k++
+            }
         }
+        return ,$sig
+    } catch {
+        return $null
+    } finally {
+        if ($g)     { $g.Dispose() }
+        if ($small) { $small.Dispose() }
     }
-    $small.Dispose()
-    return $sig
 }
 function Sig-Diff {
+    # 署名が取れなかったとき（$null）は「別のページ」とみなして撮影を続ける
     param($a, $b)
-    if ($null -eq $a) { return 999 }
+    if ($null -eq $a -or $null -eq $b -or $a.Length -eq 0 -or $a.Length -ne $b.Length) { return 999 }
     $sum = 0.0
     for ($i = 0; $i -lt $a.Length; $i++) { $sum += [math]::Abs([int]$a[$i] - [int]$b[$i]) }
     return $sum / $a.Length
@@ -156,7 +163,8 @@ for ($i = 1; $i -le $Max; $i++) {
         $sameCount = 0
         $name = "page_{0:D5}.png" -f $saved
         $bmp.Save((Join-Path $Out $name), [System.Drawing.Imaging.ImageFormat]::Png)
-        $saved++; $prevSig = $sig
+        $saved++
+        if ($null -ne $sig) { $prevSig = $sig }
     }
     $gfx.Dispose(); $bmp.Dispose()
 
