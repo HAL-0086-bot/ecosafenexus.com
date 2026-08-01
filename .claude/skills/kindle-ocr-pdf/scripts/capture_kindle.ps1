@@ -6,7 +6,9 @@
 #   - ★ いつでも ESC キーで即停止（このウィンドウがアクティブでなくてもOK）
 #   - マルチモニター対応: カウント終了時に「最前面にした本のウィンドウがある画面」を自動選択
 #   - ページ送りは既定で「本の右側をクリック」。-Rtl で左（縦書き・右綴じ日本語書籍）
-#   - ★ 終端判定はゆるい類似比較（カーソルやチラつきの差は無視）→ 本の最後で確実に自動停止
+#   - ★ 終端判定は「画面が完全に変化しなくなったか」で判断（文字の少ないページでも誤停止しない）
+#   - ★ ページの表示が遅くても、切り替わりを待ってから撮影（最大8秒 / 取りこぼし防止）
+#   - ★ 途中で止めても、次回「追記」を選べば連番の続きから保存（撮り直し不要）
 #   - 保存先は既定で「ピクチャ\kindle_pages」
 #
 # 使い方:
@@ -21,9 +23,10 @@
 param(
     [string]$Out = "$env:USERPROFILE\Pictures\kindle_pages",
     [int]$Max = 3000,
-    [double]$Delay = 1.4,
+    [double]$Delay = 0.8,         # ページ切り替わりを検知してから撮影するまでの待ち（秒）
+    [double]$MaxWait = 8.0,       # ページが切り替わるのを待つ最大時間（秒）
     [int]$StopAfterSame = 3,
-    [double]$Threshold = 3.0,     # 「同じページ」とみなす平均画素差のしきい値（大きいほど鈍感）
+    [int]$SameMax = 10,           # どのマスの変化もこの値以下なら「同じ画面」とみなす
     [ValidateSet("click","key")][string]$Mode = "click",
     [string]$Key = "{RIGHT}",
     [double]$ClickX = 0.94,
@@ -63,7 +66,7 @@ $existing = @(Get-ChildItem -Path $Out -Filter "page_*.png" -ErrorAction Silentl
 if ($existing.Count -gt 0) {
     Write-Host ""
     Write-Host ("注意: 保存先に既存の画像が {0} 枚あります: $Out" -f $existing.Count)
-    $ans = Read-Host "前回分を削除して撮り直すなら y を入力（それ以外はそのまま追記）"
+    $ans = Read-Host "最初から撮り直すなら y ＋ Enter ／ 前回の続きから撮るならそのまま Enter"
     if ($ans -eq "y") {
         Remove-Item -Path (Join-Path $Out "page_*.png") -Force -ErrorAction SilentlyContinue
         Write-Host "既存画像を削除しました。"
@@ -123,13 +126,30 @@ function Get-Signature {
         if ($small) { $small.Dispose() }
     }
 }
-function Sig-Diff {
-    # 署名が取れなかったとき（$null）は「別のページ」とみなして撮影を続ける
+function Sig-Same {
+    # 32x32の全マスのどこにも目に見える変化が無いときだけ「同じ画面」と判定する。
+    # 平均差だと文字の少ないページ同士を誤って「同じ」と判定するため、最大差で見る。
+    # 署名が取れなかったとき（$null）は「別の画面」とみなして撮影を優先する。
     param($a, $b)
-    if ($null -eq $a -or $null -eq $b -or $a.Length -eq 0 -or $a.Length -ne $b.Length) { return 999 }
-    $sum = 0.0
-    for ($i = 0; $i -lt $a.Length; $i++) { $sum += [math]::Abs([int]$a[$i] - [int]$b[$i]) }
-    return $sum / $a.Length
+    if ($null -eq $a -or $null -eq $b -or $a.Length -eq 0 -or $a.Length -ne $b.Length) { return $false }
+    for ($i = 0; $i -lt $a.Length; $i++) {
+        if ([math]::Abs([int]$a[$i] - [int]$b[$i]) -gt $SameMax) { return $false }
+    }
+    return $true
+}
+function Get-ScreenSig {
+    $b = $null; $g2 = $null
+    try {
+        $b  = New-Object System.Drawing.Bitmap $bounds.Width, $bounds.Height
+        $g2 = [System.Drawing.Graphics]::FromImage($b)
+        $g2.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
+        return ,(Get-Signature $b)
+    } catch {
+        return $null
+    } finally {
+        if ($g2) { $g2.Dispose() }
+        if ($b)  { $b.Dispose() }
+    }
 }
 function Turn-Page {
     if ($Mode -eq "click") {
@@ -141,7 +161,9 @@ function Turn-Page {
     }
 }
 
-$prevSig = $null; $sameCount = 0; $saved = 0; $stopped = ""
+$prevSig = $null; $sameCount = 0; $stopped = ""
+$saved = @(Get-ChildItem -Path $Out -Filter "page_*.png" -ErrorAction SilentlyContinue).Count
+if ($saved -gt 0) { Write-Host "既存の $saved 枚に続けて連番で保存します。" }
 
 for ($i = 1; $i -le $Max; $i++) {
     if ([Win]::EscPressed()) { $stopped = "ESCキーで停止しました。"; break }
@@ -150,13 +172,12 @@ for ($i = 1; $i -le $Max; $i++) {
     $gfx = [System.Drawing.Graphics]::FromImage($bmp)
     $gfx.CopyFromScreen($bounds.Location, [System.Drawing.Point]::Empty, $bounds.Size)
     $sig = Get-Signature $bmp
-    $diff = Sig-Diff $prevSig $sig
 
-    if ($diff -lt $Threshold) {
+    if (Sig-Same $prevSig $sig) {
         $sameCount++
+        $gfx.Dispose(); $bmp.Dispose()
         if ($sameCount -ge $StopAfterSame) {
-            $gfx.Dispose(); $bmp.Dispose()
-            $stopped = "同じ画面が $StopAfterSame 回続いたので、本の終端と判断して自動停止しました。"
+            $stopped = "画面が変化しなくなったため、本の終端と判断して自動停止しました。"
             break
         }
     } else {
@@ -165,11 +186,22 @@ for ($i = 1; $i -le $Max; $i++) {
         $bmp.Save((Join-Path $Out $name), [System.Drawing.Imaging.ImageFormat]::Png)
         $saved++
         if ($null -ne $sig) { $prevSig = $sig }
+        $gfx.Dispose(); $bmp.Dispose()
     }
-    $gfx.Dispose(); $bmp.Dispose()
 
     Turn-Page
-    Start-Sleep -Seconds $Delay
+
+    # ページが実際に切り替わるまで待つ（最大 $MaxWait 秒）。表示の遅いページでも取りこぼさない。
+    $waited = 0.0
+    Start-Sleep -Milliseconds 300; $waited += 0.3
+    while ($waited -lt $MaxWait) {
+        if ([Win]::EscPressed()) { break }
+        $now = Get-ScreenSig
+        if (-not (Sig-Same $prevSig $now)) { break }
+        Start-Sleep -Milliseconds 300; $waited += 0.3
+    }
+    Start-Sleep -Milliseconds ([int]($Delay * 1000))
+
     Write-Host -NoNewline ("`r取得: {0} ページ（同一検知 {1}/{2}）  ※止めるにはESC" -f $saved, $sameCount, $StopAfterSame)
 }
 
